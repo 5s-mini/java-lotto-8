@@ -20,8 +20,13 @@ public class RandomNumber {
     }
 
     private static void printLottoNumbers() {
+        List<Integer> lottoNumbers = generateLottoNumbers();
+        System.out.println(lottoNumbers);
+    }
+
+    public static List<Integer> generateLottoNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_NUM);
         lottoNumbers.sort(Integer::compareTo);
-        System.out.println(lottoNumbers);
+        return lottoNumbers;
     }
 }

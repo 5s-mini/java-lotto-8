@@ -3,36 +3,38 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class PurchaseInput {
-    public PurchaseInput() {
+
+    private static final int UNIT_PRICE = 1000;
+
+    public void requestAndProcess() {
         System.out.println("구입 금액을 입력해 주세요.");
         String purchaseInput = Console.readLine();
-
-        IsBlank(purchaseInput);
-        IsIntMoney(purchaseInput);
-        int purchaseInt = Integer.parseInt(purchaseInput);
-        IsUnitMoney(purchaseInt);
-
-        int purchaseCount = purchaseInt / 1000;
+        int purchaseCount = process(purchaseInput);
         RandomNumber.Generate(purchaseCount);
     }
 
-    private void IsBlank(String purchaseInput) {
+    public int process(String purchaseInput) {
+        IsBlank(purchaseInput);
+        int purchaseInt = IsIntMoney(purchaseInput);
+        IsUnitMoney(purchaseInt);
+        return purchaseInt / UNIT_PRICE;
+    }
+
+    void IsBlank(String purchaseInput) {
         if (purchaseInput == null || purchaseInput.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액 값이 없어요.");
         }
-
     }
 
-    private void IsIntMoney(String purchaseInput) {
-        int money = 0;
+    int IsIntMoney(String purchaseInput) {
         try {
-            money = Integer.parseInt(purchaseInput);
+            return Integer.parseInt(purchaseInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 정수로 입력해 주세요.");
         }
     }
 
-    public void IsUnitMoney(int purchaseInt) {
+    void IsUnitMoney(int purchaseInt) {
         if (purchaseInt % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 1,000원 단위로 입력해 주세요.");
         }
