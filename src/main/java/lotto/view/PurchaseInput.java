@@ -8,8 +8,12 @@ public class PurchaseInput {
         String purchaseInput = Console.readLine();
 
         IsBlank(purchaseInput);
-        IsUnitMoney(purchaseInput);
+        IsIntMoney(purchaseInput);
+        int purchaseInt = Integer.parseInt(purchaseInput);
+        IsUnitMoney(purchaseInt);
 
+        int purchaseCount = purchaseInt / 1000;
+        RandomNumber.Generate(purchaseCount);
     }
 
     private void IsBlank(String purchaseInput) {
@@ -19,15 +23,17 @@ public class PurchaseInput {
 
     }
 
-    private void IsUnitMoney(String purchaseInput) {
+    private void IsIntMoney(String purchaseInput) {
         int money = 0;
         try {
             money = Integer.parseInt(purchaseInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 정수로 입력해 주세요.");
         }
+    }
 
-        if (money % 1000 != 0) {
+    public void IsUnitMoney(int purchaseInt) {
+        if (purchaseInt % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 구입 금액을 1,000원 단위로 입력해 주세요.");
         }
     }
