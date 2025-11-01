@@ -3,26 +3,33 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 
 public class PurchaseInput {
-
     private static final int UNIT_PRICE = 1000;
 
-    public void requestAndProcess() {
+    public void PurchaseRequest() {
         System.out.println("구입 금액을 입력해 주세요.");
         String purchaseInput = Console.readLine();
-        int purchaseCount = process(purchaseInput);
+
+        int purchaseCount = Process(purchaseInput);
         RandomNumber.Generate(purchaseCount);
     }
 
-    public int process(String purchaseInput) {
+    public int Process(String purchaseInput) {
         IsBlank(purchaseInput);
+        IsNull(purchaseInput);
         int purchaseInt = IsIntMoney(purchaseInput);
         IsUnitMoney(purchaseInt);
         return purchaseInt / UNIT_PRICE;
     }
 
     void IsBlank(String purchaseInput) {
-        if (purchaseInput == null || purchaseInput.isBlank()) {
+        if (purchaseInput.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 구입 금액 값이 없어요.");
+        }
+    }
+    
+    void IsNull(String purchaseInput) {
+        if (purchaseInput == null) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액 값이 null이에요.");
         }
     }
 
