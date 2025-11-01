@@ -31,7 +31,7 @@ public class Lotto {
         return new Lotto(parsedLottoNum);
     }
 
-    private static List<Integer> ParseToInt(String lottoInput) {
+    public static List<Integer> ParseToInt(String lottoInput) {
         try {
             return Arrays.stream(lottoInput.split(","))
                     .map(String::trim)
@@ -48,7 +48,7 @@ public class Lotto {
         }
     }
     
-    private static void ValidateNull(Object lottoInput) {
+    public static void ValidateNull(Object lottoInput) {
         if (lottoInput == null) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 값이 null이에요.");
         }
