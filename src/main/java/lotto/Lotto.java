@@ -38,7 +38,7 @@ public class Lotto {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수로 입력하세요.");
         }
     }
 
@@ -62,19 +62,19 @@ public class Lotto {
 
     private void ValidateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUM) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개를 입력해 주세요.");
         }
     }
 
     private void ValidateDuplicate(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있어요.");
         }
     }
 
     private void ValidateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(num -> num < MIN || num > MAX)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 값으로 지정해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 값으로 지정해 주세요.");
         }
     }
 }
