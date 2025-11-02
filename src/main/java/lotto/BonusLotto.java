@@ -35,19 +35,19 @@ public class BonusLotto {
         }
     }
 
-    private static void ValidateBlank(String bonusLottoInput) {
+    public static void ValidateBlank(String bonusLottoInput) {
         if (bonusLottoInput.isBlank()) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호를 입력해 주세요.");
         }
     }
 
-    private static void ValidateNull(String bonusLottoInput) {
+    public static void ValidateNull(String bonusLottoInput) {
         if (bonusLottoInput == null) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호 값이 null이에요.");
         }
     }
 
-    private void ValidateRange(int bonusNumber) {
+    public void ValidateRange(int bonusNumber) {
         if (bonusNumber < MIN || bonusNumber > MAX) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 값으로 지정해 주세요.");
         }
