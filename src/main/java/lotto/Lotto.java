@@ -47,8 +47,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호를 입력해 주세요.");
         }
     }
-    
-    public static void ValidateNull(Object lottoInput) {
+
+    public static void ValidateNull(String lottoInput) {
         if (lottoInput == null) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 값이 null이에요.");
         }

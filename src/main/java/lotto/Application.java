@@ -9,5 +9,6 @@ public class Application {
         purchaseInput.PurchaseRequest();
         RandomNumber randomNumber = new RandomNumber();
         Lotto lotto = Lotto.InputLottoNumbers();
+        BonusLotto bonusLotto = BonusLotto.InputBonusLottoNumbers();
     }
 }
