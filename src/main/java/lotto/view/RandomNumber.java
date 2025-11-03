@@ -14,7 +14,7 @@ public class RandomNumber {
 
     public static void Generate(int purchaseCount) {
         finalLotto.clear();
-        System.out.println("\n" + purchaseCount + "개를 구매했습니다.");
+        System.out.println(purchaseCount + "개를 구매했습니다.");
 
         for (int i = 0; i < purchaseCount; i++) {
             List<Integer> lottoNumbers = GenerateLottoNumbers();
@@ -25,7 +25,7 @@ public class RandomNumber {
     }
 
     static List<Integer> GenerateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_NUM);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_NUM));
         lottoNumbers.sort(Integer::compareTo);
         return lottoNumbers;
     }

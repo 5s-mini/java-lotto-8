@@ -15,9 +15,14 @@ public class BonusLotto {
     }
 
     public static BonusLotto InputBonusLottoNumbers() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusLottoInput = Console.readLine();
-        return ParseBonusLottoInput(bonusLottoInput);
+        try {
+            return ParseBonusLottoInput(bonusLottoInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
     }
 
     private static BonusLotto ParseBonusLottoInput(String bonusLottoInput) {

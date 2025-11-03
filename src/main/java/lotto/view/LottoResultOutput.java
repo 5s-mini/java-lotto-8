@@ -18,7 +18,7 @@ public class LottoResultOutput {
             "6개 일치 (2,000,000,000원)", 2_000_000_000
     );
 
-    static {
+    private static void InitializeResults() {
         lottoResultOutputs.put("3개 일치 (5,000원)", 0);
         lottoResultOutputs.put("4개 일치 (50,000원)", 0);
         lottoResultOutputs.put("5개 일치 (1,500,000원)", 0);
@@ -26,7 +26,12 @@ public class LottoResultOutput {
         lottoResultOutputs.put("6개 일치 (2,000,000,000원)", 0);
     }
 
+    static {
+        InitializeResults();
+    }
+
     public static void LottoResult(List<Lotto> purchasedLotto, Lotto lotto, BonusLotto bonusLotto, int purchaseCount) {
+
         List<Integer> lottoNumbers = GetNumbers(lotto);
         int bonusNumber = GetBonusNumber(bonusLotto);
 
@@ -62,7 +67,7 @@ public class LottoResultOutput {
     }
 
     private static void PrintResults(int purchaseCount) {
-        System.out.println("\n당첨 통계");
+        System.out.println("당첨 통계");
         System.out.println("---");
         lottoResultOutputs.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
 

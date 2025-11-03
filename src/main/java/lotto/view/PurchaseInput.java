@@ -8,10 +8,7 @@ public class PurchaseInput {
     public int PurchaseRequest() {
         System.out.println("구입 금액을 입력해 주세요.");
         String purchaseInput = Console.readLine();
-
         int purchaseCount = Process(purchaseInput);
-        RandomNumber.Generate(purchaseCount);
-
         return purchaseCount;
     }
 
