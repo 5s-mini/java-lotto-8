@@ -24,7 +24,7 @@ public class RandomNumber {
         }
     }
 
-    private static List<Integer> GenerateLottoNumbers() {
+    static List<Integer> GenerateLottoNumbers() {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_NUM);
         lottoNumbers.sort(Integer::compareTo);
         return lottoNumbers;
