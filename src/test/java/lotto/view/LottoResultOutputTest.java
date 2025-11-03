@@ -13,10 +13,13 @@ import org.junit.jupiter.api.Test;
 class LottoResultOutputTest {
 
     private String runLottoResult(List<Lotto> purchased, Lotto winning, BonusLotto bonus) {
+        int purchaseCount = purchased.size();
+
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
-        LottoResultOutput.LottoResult(purchased, winning, bonus);
+
+        LottoResultOutput.LottoResult(purchased, winning, bonus, purchaseCount);
         System.setOut(originalOut);
         return outContent.toString();
     }
