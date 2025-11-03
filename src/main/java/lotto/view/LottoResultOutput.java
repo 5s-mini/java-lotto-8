@@ -8,7 +8,15 @@ import lotto.Lotto;
 
 public class LottoResultOutput {
 
+    private static final int TICKET_PRICE = 1000;
     private static final Map<String, Integer> lottoResultOutputs = new LinkedHashMap<>();
+    private static final Map<String, Integer> rewardMap = Map.of(
+            "3개 일치 (5,000원)", 5_000,
+            "4개 일치 (50,000원)", 50_000,
+            "5개 일치 (1,500,000원)", 1_500_000,
+            "5개 일치, 보너스 볼 일치 (30,000,000원)", 30_000_000,
+            "6개 일치 (2,000,000,000원)", 2_000_000_000
+    );
 
     static {
         lottoResultOutputs.put("3개 일치 (5,000원)", 0);
@@ -18,7 +26,7 @@ public class LottoResultOutput {
         lottoResultOutputs.put("6개 일치 (2,000,000,000원)", 0);
     }
 
-    public static void LottoResult(List<Lotto> purchasedLotto, Lotto lotto, BonusLotto bonusLotto) {
+    public static void LottoResult(List<Lotto> purchasedLotto, Lotto lotto, BonusLotto bonusLotto, int purchaseCount) {
         List<Integer> lottoNumbers = GetNumbers(lotto);
         int bonusNumber = GetBonusNumber(bonusLotto);
 
@@ -32,7 +40,7 @@ public class LottoResultOutput {
             UpdateResult(matchNumber, matchBonus);
         }
 
-        PrintResults();
+        PrintResults(purchaseCount);
     }
 
     private static void UpdateResult(int matchNumber, boolean matchBonus) {
@@ -53,10 +61,17 @@ public class LottoResultOutput {
         }
     }
 
-    private static void PrintResults() {
+    private static void PrintResults(int purchaseCount) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
         lottoResultOutputs.forEach((key, value) -> System.out.println(key + " - " + value + "개"));
+
+        double totalReward = CalculateTotalReward();
+        double totalTicketPrice = purchaseCount * TICKET_PRICE;
+        double totalRate = (totalReward / totalTicketPrice) * 100;
+        totalRate = Math.round(totalRate * 10) / 10.0;
+
+        System.out.println("총 수익률은 " + totalRate + "%입니다.");
     }
 
     private static void Increment(String string) {
@@ -81,5 +96,11 @@ public class LottoResultOutput {
         } catch (Exception e) {
             throw new RuntimeException("[ERROR] 보너스 번호 접근 중 오류 발생");
         }
+    }
+
+    private static double CalculateTotalReward() {
+        return lottoResultOutputs.entrySet().stream()
+                .mapToDouble(entry -> rewardMap.get(entry.getKey()) * entry.getValue())
+                .sum();
     }
 }

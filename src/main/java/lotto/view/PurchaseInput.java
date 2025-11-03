@@ -5,12 +5,14 @@ import camp.nextstep.edu.missionutils.Console;
 public class PurchaseInput {
     private static final int UNIT_PRICE = 1000;
 
-    public void PurchaseRequest() {
+    public int PurchaseRequest() {
         System.out.println("구입 금액을 입력해 주세요.");
         String purchaseInput = Console.readLine();
 
         int purchaseCount = Process(purchaseInput);
         RandomNumber.Generate(purchaseCount);
+
+        return purchaseCount;
     }
 
     public int Process(String purchaseInput) {
@@ -26,7 +28,7 @@ public class PurchaseInput {
             throw new IllegalArgumentException("[ERROR] 구입 금액 값이 없어요.");
         }
     }
-    
+
     void IsNull(String purchaseInput) {
         if (purchaseInput == null) {
             throw new IllegalArgumentException("[ERROR] 구입 금액 값이 null이에요.");

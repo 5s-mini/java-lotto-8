@@ -8,7 +8,7 @@ import lotto.view.RandomNumber;
 public class Application {
     public static void main(String[] args) {
         PurchaseInput purchaseInput = new PurchaseInput();
-        purchaseInput.PurchaseRequest();
+        int purchaseCount = purchaseInput.PurchaseRequest();
 
         RandomNumber randomNumber = new RandomNumber();
         List<Lotto> purchasedLotto = randomNumber.GetLotto();
@@ -16,6 +16,6 @@ public class Application {
         Lotto lotto = Lotto.InputLottoNumbers();
         BonusLotto bonusLotto = BonusLotto.InputBonusLottoNumbers();
 
-        LottoResultOutput.LottoResult(purchasedLotto, lotto, bonusLotto);
+        LottoResultOutput.LottoResult(purchasedLotto, lotto, bonusLotto, purchaseCount);
     }
 }
